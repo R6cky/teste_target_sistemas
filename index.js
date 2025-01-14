@@ -43,6 +43,11 @@ const calculoPercentual = () => {
   }
 };
 calculoPercentual();
+
 // EX 5
 
-const reverse = (value) => {};
+const reverse = (string) => {
+  console.log(string);
+};
+
+reverse();
