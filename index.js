@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { json } = require("stream/consumers");
 
 // EX 1
 
@@ -18,7 +19,10 @@ console.log("-----------------------------------------------------------");
 //EX 2
 
 // EX 3
-
+fs.readFile("./dados.json", "utf-8", (err, data) => {
+  if (err) return err;
+  console.log(JSON.parse(data));
+});
 // EX 4
 const calculoPercentual = () => {
   let faturamento = {
