@@ -19,10 +19,25 @@ console.log("-----------------------------------------------------------");
 //EX 2
 
 // EX 3
-fs.readFile("./dados.json", "utf-8", (err, data) => {
-  if (err) return err;
-  console.log(JSON.parse(data));
-});
+
+const monthlyBilling = () => {
+  let menorValor = 0;
+  let maiorValor = 0;
+  let mediaMensal = 0;
+  fs.readFile("./dados.json", "utf-8", (err, data) => {
+    if (err) return err;
+    const convertData = JSON.parse(data);
+
+    for (const obj in convertData) {
+      if (convertData[obj].valor !== 0) {
+        mediaMensal = mediaMensal +=
+          convertData[obj].valor / convertData.length;
+      }
+    }
+    console.log("Média diária de faturamento: R$ " + mediaMensal.toFixed(2));
+  });
+};
+monthlyBilling();
 // EX 4
 const calculoPercentual = () => {
   let faturamento = {
