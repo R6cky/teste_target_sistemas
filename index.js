@@ -26,18 +26,16 @@ const calculoPercentual = () => {
     es: 2716548,
   };
 
-  let total = Number(
-    faturamento.sp + faturamento.rj + faturamento.mg + faturamento.es
-  );
+  let total = faturamento.sp + faturamento.rj + faturamento.mg + faturamento.es;
 
   for (key in faturamento) {
     console.log(
       key +
         ": " +
         faturamento[key] +
-        " - percentual: " +
+        " | percentual: " +
         ((faturamento[key] / total) * 100).toFixed(2) +
-        "%"
+        " %"
     );
   }
 };
