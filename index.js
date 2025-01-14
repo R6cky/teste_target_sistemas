@@ -27,14 +27,22 @@ const monthlyBilling = () => {
   fs.readFile("./dados.json", "utf-8", (err, data) => {
     if (err) return err;
     const convertData = JSON.parse(data);
-
+    maiorValor = { dia: 0, valor: 0 };
+    menorValor = 0;
     for (const obj in convertData) {
       if (convertData[obj].valor !== 0) {
         mediaMensal = mediaMensal +=
           convertData[obj].valor / convertData.length;
       }
+
+      if (maiorValor.valor < convertData[obj].valor) {
+        maiorValor.dia = convertData[obj].dia;
+        maiorValor.valor = convertData[obj].valor;
+      }
     }
+    console.log(convertData);
     console.log("Média diária de faturamento: R$ " + mediaMensal.toFixed(2));
+    console.log("Maior valor: ", maiorValor);
   });
 };
 monthlyBilling();
