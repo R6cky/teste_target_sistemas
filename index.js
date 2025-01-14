@@ -18,7 +18,6 @@ console.log(`O valor de soma é: ${soma}`);
 // EX 3
 
 // EX 4
-
 const calculoPercentual = () => {
   let faturamento = {
     sp: 6783643,
@@ -47,7 +46,11 @@ calculoPercentual();
 // EX 5
 
 const reverse = (string) => {
-  console.log(string);
+  const newString = [];
+  for (let i = string.length - 1; i >= 0; i--) {
+    newString.push(string[i]);
+  }
+  console.log(newString.toString().replaceAll(",", " "));
 };
 
-reverse();
+reverse("abacate");
