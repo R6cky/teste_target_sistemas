@@ -1,19 +1,19 @@
 const fs = require("fs");
-const { json } = require("stream/consumers");
 
 // EX 1
 
-let indice = 13;
-let soma = 0;
-let k = 0;
+const totalSoma = () => {
+  let indice = 13;
+  let soma = 0;
+  let k = 0;
 
-while (k <= indice) {
-  k += 1;
-  soma += k;
-}
-
-console.log(`O valor de soma é: ${soma}`);
-
+  while (k <= indice) {
+    k += 1;
+    soma += k;
+  }
+  console.log(`O valor de soma é: ${soma}`);
+};
+//totalSoma();
 console.log("-----------------------------------------------------------");
 
 //EX 2
@@ -26,26 +26,27 @@ const monthlyBilling = () => {
   let mediaMensal = 0;
   fs.readFile("./dados.json", "utf-8", (err, data) => {
     if (err) return err;
-    const convertData = JSON.parse(data);
-    maiorValor = { dia: 0, valor: 0 };
-    menorValor = 0;
+    let convertData = JSON.parse(data).filter((elem) => elem.valor > 0);
+    maiorValor = convertData[0];
+    menorValor = convertData[0];
     for (const obj in convertData) {
-      if (convertData[obj].valor !== 0) {
-        mediaMensal = mediaMensal +=
-          convertData[obj].valor / convertData.length;
-      }
+      mediaMensal += convertData[obj].valor / convertData.length;
 
       if (maiorValor.valor < convertData[obj].valor) {
-        maiorValor.dia = convertData[obj].dia;
-        maiorValor.valor = convertData[obj].valor;
+        maiorValor = convertData[obj];
+      }
+
+      if (menorValor.valor > convertData[obj].valor) {
+        menorValor = convertData[obj];
       }
     }
-    console.log(convertData);
     console.log("Média diária de faturamento: R$ " + mediaMensal.toFixed(2));
+    console.log("Menor valor: ", menorValor);
     console.log("Maior valor: ", maiorValor);
   });
 };
 monthlyBilling();
+
 // EX 4
 const calculoPercentual = () => {
   let faturamento = {
@@ -68,7 +69,7 @@ const calculoPercentual = () => {
     );
   }
 };
-calculoPercentual();
+//calculoPercentual();
 console.log("-----------------------------------------------------------");
 
 // EX 5
@@ -81,4 +82,4 @@ const reverse = (string) => {
   console.log(newString.toString().replaceAll(",", " "));
 };
 
-reverse("abacate");
+//reverse("abacate");
