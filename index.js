@@ -7,7 +7,7 @@ const totalSoma = () => {
   let soma = 0;
   let k = 0;
 
-  while (k <= indice) {
+  while (k < indice) {
     k += 1;
     soma += k;
   }
@@ -26,10 +26,13 @@ const fibbonaci = (number) => {
     nextValue =
       initialValue[initialValue.length - 1] +
       initialValue[initialValue.length - 2];
+    initialValue.push(nextValue);
   }
-  initialValue.push(nextValue);
+  return initialValue.includes(number)
+    ? initialValue
+    : "Este número não pertence a sequencia Fibbonaci";
 };
-fibbonaci();
+console.log(fibbonaci(13));
 console.log("-----------------------------------------------------------");
 // EX 3
 console.log("Exercício 3");
